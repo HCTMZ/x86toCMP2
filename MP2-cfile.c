@@ -32,7 +32,7 @@ int main(){
         printf("%.8f ", z[i]);
     }
 	
-	printf("\n")
+	printf("\n");
 	
 	//Time this function
 	vectorDistance(n, x1, x2, y1, y2, z);
