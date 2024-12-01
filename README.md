@@ -5,7 +5,6 @@ gcc -c MP2-cfile.c -o cfile.obj -m64
 gcc cfile.obj MP2-asmfile.obj -o cfile.exe -m64
 Cfile.exe
 
-i.) comparative execution time and short analysis of the performance of the kernels
 We tested both C and Assembly on vector size 2^20, 2^24, 2^25, 2^26, 2^27. We only tested it up to 27 due to machine limitations. The rows images below are the outputs of both kernels and the time in ns that it took to perform the task. In the table below showing the output time of both C and ASM, we noticed that ASM is faster by 15 to 17 times compared to C.
 
 |Vector Size | C Kernel average time | ASM Kernel average time | C time/ Asm time|
