@@ -44,16 +44,16 @@ void test(int n){
     for (i = 0; i < 10; i++) {
         printf("%.8f ", z[i]);
     }
-    printf("C Kernel: n = %d, Average Time: %.8f ns\n", n, total_time_c / 30  * 1e9);
+    printf("\nC Kernel: n = %d, Average Time: %.8f ns\n", n, (total_time_c / 30)  * 1e9);
 	
 	printf("\n");
 	
 	//Time this function
 	for (i = 0; i < 30; i++) {
         start = clock();
-        vectorDistance(n, x1, x2, y1, y2, z);
+        asmVectorDistance(n, x1, x2, y1, y2, z);
         end = clock();
-        total_time_c += (double)(end - start) / CLOCKS_PER_SEC;
+        total_time_asm += (double)(end - start) / CLOCKS_PER_SEC;
     }
 	
 	//Print results and time
@@ -61,12 +61,20 @@ void test(int n){
     for (i = 0; i < 10; i++) {
         printf("%.8f ", z[i]);
     }
-    printf("ASM Kernel: n = %d, Average Time: %.8f ns\n", n, total_time_asm / 30 * 1e9);
+    printf("\nASM Kernel: n = %d, Average Time: %.8f ns\n", n, (total_time_asm / 30) * 1e9);
 	
 }
 
 int main(){
+	printf("2^20: \n\n");
 	test(pow(2,20));
-	test(pow(2,22));
+	printf("2^24: \n\n");
+	test(pow(2,24));
+	printf("2^25: \n\n");
+	test(pow(2,25));
+	printf("2^26: \n\n");
+	test(pow(2,26));
+	printf("2^27: \n\n");
+	test(pow(2,27));
 	return 0;
 }
