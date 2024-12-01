@@ -3,14 +3,15 @@
 #include <math.h>
 #include <time.h>
 
-extern void vecDistance86(int n, double* x1, double* x2, double* y1, double* y2, double* z);
-
 // C program to calculate the distance of coordinates in vectors
 void vectorDistance(int n, double* x1, double* x2, double* y1, double* y2, double* z){
-	for (int i = 0; i < n; i++){
-		z[i] = sqrt(pow(x2[i]-x1[i]) + pow(y2[i]-y1[i]));
+	int i = 0;
+	for (i = 0; i < n; i++){
+		z[i] = sqrt(pow(x2[i]-x1[i], 2) + pow(y2[i]-y1[i], 2));
 	}
 }
+
+extern void asmVectorDistance(int n, double* x1, double* x2, double* y1, double* y2, double* z);
 
 //main function to call 86 and C kernels
 int main(){
@@ -20,23 +21,25 @@ int main(){
     double y1[] = {4.0, 3.0, 3.5, 3.0};
     double y2[] = {2.0, 2.5, 1.0, 1.5};
 	double* z = (double*)malloc(n*sizeof(double));
+	int i = 0;
 	
 	//Time this function
 	vectorDistance(n, x1, x2, y1, y2, z);
 	
 	//Print results and time
 	printf("Results:\n");
-    for (int i = 0; i < n; i++) {
+    for (i = 0; i < n; i++) {
         printf("%.8f ", z[i]);
     }
 	
+	printf("\n")
 	
 	//Time this function
-	vecDistance86(n, x1, x2, y1, y2, z);
+	vectorDistance(n, x1, x2, y1, y2, z);
 	
 	//Print results and time
 	printf("Results:\n");
-    for (int i = 0; i < n; i++) {
+    for (i = 0; i < n; i++) {
         printf("%.8f ", z[i]);
     }
 	
